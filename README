@@ -1,0 +1,50 @@
+NAME
+
+Term::Input - A simple drop-in replacement for <STDIN> in scripts
+              with the additional ability to capture and return
+              the non-standard keys like 'End', 'F3', 'Insert', etc.
+              The script can then take any action based on the key
+              pressed and returned.
+
+SYNOPSIS
+
+   use Term::Input;
+
+   my $prompt='PROMPT : ';
+   my ($input,$key)=('','');
+   ($input,$key)=Input($prompt);
+
+   print "\nInput=$input" if $input;
+   print "\nKey=$key\n" if $key;
+
+   print "Captured F1\n" if $key eq 'F1';
+   print "Captured ESCAPE\n" if $key eq 'ESCAPE';
+   print "Captured DELETE\n" if $key eq 'DELETE';
+   print "Captured PAGEDOWN\n" if $key eq 'PAGEDOWN';
+
+DESCRIPTION
+
+I needed a ridiculously simple function that behaved exactly like $input=<STDIN> in scripts, that captured user input and and populated a variable with a resulting string. BUT - I also wanted to use other KEYS like F1 and DELETE and the RIGHT ARROW and have them captured and returned. So I really wanted this:
+
+my $prompt='PROMPT : ';
+($input,$key)=input($prompt);
+
+... where I could test the variable '$key' for the key that was used to terminate the input. That way I could use the arrow keys to scroll a menu for instance.
+
+I looked through the CPAN, and could not find something this simple and straight-forward. So I wrote it. Enjoy.
+
+NOTE: Backspace is not captured - but used to backspace. DELETE is captured. Also, no Control combinations are captured - just the non-standard keys F1-F12, INSERT, DELETE, ENTER, ESCAPE, HOME, PGDOWN, PGUP, END and the ARROW KEYS. All captured keys listed will terminate user input and return the results - just like you would expect using ENTER with <STDIN>.
+
+AUTHOR
+
+Brian M. Kelly <Brian.Kelly@fullautosoftware.net>
+
+COPYRIGHT
+
+Copyright (C) 2011
+by Brian M. Kelly.
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License.
+(http://www.opensource.org/licenses/gpl-license.php).
+

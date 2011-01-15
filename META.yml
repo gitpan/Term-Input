@@ -1,0 +1,19 @@
+---
+abstract: 'A simple drop-in substitute for <STDIN> that also captures non-standard keys like F1'
+author:
+  - 'Brian M. Kelly <Brian.Kelly@fullautosoftware.net>'
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
+license: gpl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.0
+name: Term-Menus
+provides:
+requires:
+  Term::ReadKey: 0
+  IO::Handle: 0
+resources:
+  license: http://opensource.org/licenses/gpl-license.php
+version: 1.0
