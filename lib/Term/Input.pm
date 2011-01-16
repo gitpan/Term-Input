@@ -15,7 +15,7 @@ package Input;
 ## See user documentation at the end of this file.  Search for =head
 
 
-$VERSION = '1.0';
+$VERSION = '1.01';
 
 
 use 5.006;
