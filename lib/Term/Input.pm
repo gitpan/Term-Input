@@ -15,7 +15,7 @@ package Input;
 ## See user documentation at the end of this file.  Search for =head
 
 
-$VERSION = '1.02';
+$VERSION = '1.03';
 
 
 use 5.006;
@@ -45,19 +45,17 @@ sub Input {
    my $save='';
    while (1) {
       $char=ReadKey(0);
+      STDOUT->autoflush(1);
       $a=ord($char);
-#print "CHAR-1=$a ";
       push @char, $a;
       if ($a==10 || $a==13) {
          $save=$output;
          while (1) {
-            STDOUT->autoflush(1);
             last if (length $output==$length_prompt);
             substr($output,-1)=' ';
             printf("\r% ${length_prompt}s",$output);
             chop $output;
             printf("\r% ${length_prompt}s",$output);
-            STDOUT->autoflush(0);
             last if (length $output==$length_prompt);
          }
          $key='ENTER' if $a==10;
@@ -65,17 +63,14 @@ sub Input {
       }
       if ($a==127) {
          next if (length $output==$length_prompt);
-         STDOUT->autoflush(1);
          substr($output,-1)=' ';
          printf("\r% ${length_prompt}s",$output);
          chop $output;
          printf("\r% ${length_prompt}s",$output);
-         STDOUT->autoflush(0);
       } elsif ($a==27) {
          my $flag=0;
          while ($char=ReadKey(-1)) {
             $a=ord($char);
-#print "CHAR$flag=$a ";
             push @char, $a;
             $flag++;
          }
@@ -110,16 +105,13 @@ sub Input {
                }
                if ($key) {
                   $save=$output;
-                  #chomp($output=~tr/\0-\37\177-\377//d);
                   while (1) {
                      last if (length $output==$length_prompt);
-                     STDOUT->autoflush(1);
                      substr($output,-1)=' ';
                      printf("\r% ${length_prompt}s",$output);
                      last if (length $output==$length_prompt);
                      chop $output;
                      printf("\r% ${length_prompt}s",$output);
-                     STDOUT->autoflush(0);
                      last if (length $output==$length_prompt);
                   } last
                }
@@ -128,12 +120,10 @@ sub Input {
                $save=$output;
                while (1) {
                   last if (length $output==$length_prompt);
-                  STDOUT->autoflush(1);
                   substr($output,-1)=' ';
                   printf("\r% ${length_prompt}s",$output);
                   chop $output;
                   printf("\r% ${length_prompt}s",$output);
-                  STDOUT->autoflush(0);
                   last if (length $output==$length_prompt);
                } last
             }
@@ -170,13 +160,11 @@ sub Input {
                $save=$output;
                while (1) {
                   last if (length $output==$length_prompt);
-                  STDOUT->autoflush(1);
                   substr($output,-1)=' ';
                   printf("\r% ${length_prompt}s",$output);
                   last if (length $output==$length_prompt);
                   chop $output;
                   printf("\r% ${length_prompt}s",$output);
-                  STDOUT->autoflush(0);
                   last if (length $output==$length_prompt);
                } last
             }
@@ -230,26 +218,23 @@ sub Input {
                $save=$output;
                while (1) {
                   last if (length $output==$length_prompt);
-                  STDOUT->autoflush(1);
                   substr($output,-1)=' ';
                   printf("\r% ${length_prompt}s",$output);
                   last if (length $output==$length_prompt);
                   chop $output;
                   printf("\r% ${length_prompt}s",$output);
-                  STDOUT->autoflush(0);
                   last if (length $output==$length_prompt);
                } last
             }
          }
       } else {
          $output.=chr($a);
-         STDOUT->autoflush(1);
          printf("\r% ${length_prompt}s",$output);
-         STDOUT->autoflush(0);
       }
       last unless defined $char;
    }
    substr($save,0,$length_prompt)='';
+   STDOUT->autoflush(0);
    ReadMode('normal');
 
    return $save,$key;
@@ -274,8 +259,6 @@ __END__;
 Term::Input - A simple drop-in replacement for <STDIN> in scripts
               with the additional ability to capture and return
               the non-standard keys like 'End', 'F3', 'Insert', etc.
-              The script can then take any action based on the key
-              pressed and returned.
 
 =head1 SYNOPSIS
 

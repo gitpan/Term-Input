@@ -3,8 +3,6 @@ NAME
 Term::Input - A simple drop-in replacement for <STDIN> in scripts
               with the additional ability to capture and return
               the non-standard keys like 'End', 'F3', 'Insert', etc.
-              The script can then take any action based on the key
-              pressed and returned.
 
 SYNOPSIS
 

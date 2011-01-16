@@ -13,10 +13,10 @@ name: Term-Input
 provides:
   Input:
     file: lib/Term/Input.pm
-    version: 1.02
+    version: 1.03
 requires:
   Term::ReadKey: 0
   IO::Handle: 0
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.02
+version: 1.03
