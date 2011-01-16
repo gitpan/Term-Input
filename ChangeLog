@@ -1,5 +1,12 @@
 2011-01-16  Brian M. Kelly  <Brian.Kelly@fullautosoftware.com>
 
+        * Version 1.04 released.
+
+        * Fixed package name in Input.pm.
+
+
+2011-01-16  Brian M. Kelly  <Brian.Kelly@fullautosoftware.com>
+
         * Version 1.03 released.
 
         * Fixed POD name to show up better in CPAN.

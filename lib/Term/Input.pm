@@ -1,4 +1,4 @@
-package Input;
+package Term::Input;
 
 #    Input.pm
 #
@@ -15,7 +15,7 @@ package Input;
 ## See user documentation at the end of this file.  Search for =head
 
 
-$VERSION = '1.03';
+$VERSION = '1.04';
 
 
 use 5.006;
