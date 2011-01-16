@@ -8,12 +8,15 @@ generated_by: 'Module::Build version 0.3603'
 license: gpl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.01
+  version: 1.4
 name: Term-Input
 provides:
+  Input:
+    file: lib/Term/Input.pm
+    version: 1.02
 requires:
   Term::ReadKey: 0
   IO::Handle: 0
 resources:
   license: http://opensource.org/licenses/gpl-license.php
-version: 1.01
+version: 1.02
